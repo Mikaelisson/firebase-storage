@@ -1,0 +1,4 @@
+node_modules
+.env
+yarn-error.log
+firebase-key.json

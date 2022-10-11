@@ -1,0 +1,23 @@
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const path = require("path");
+const router = require("./routes/router");
+
+app.use(express.static(path.join(__dirname, "public/build")));
+
+if (process.env.NODE_ENV != "development") {
+  app.use(express.static(path.join(__dirname, "public/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/build/index.html"), (error) => {
+      if (error) return res.status(500).send(error);
+    });
+  });
+}
+
+app.use("/", router);
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`);
+});
