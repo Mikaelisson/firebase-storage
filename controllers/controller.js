@@ -10,7 +10,7 @@ const home = async (req, res) => {
 const upload = async (req, res) => {
   try {
     console.log(req.file);
-    res.send("Success");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
     res.send(error);
