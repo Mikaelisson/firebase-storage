@@ -51,6 +51,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 form p {
@@ -70,6 +71,35 @@ form button{
   position: relative;
 }
 
+
+.container-images{
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+.container-images div{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.container-images div img {
+  width: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.container-images div img:hover{
+  border-radius: 100%;
+}
+
+
+
 .loading{
   width: 100vw;
   height: 100vh;
@@ -81,7 +111,7 @@ form button{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
   position: fixed;
   top: 0;
   left: 0;

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function App() {
   const [filePath, setFilePath] = useState("");
   const [loading, setLoading] = useState(false);
+
   return (
     <div className="app">
       <h1>Upload de imagem</h1>
@@ -34,6 +35,20 @@ function App() {
         </button>
       </form>
 
+      <div className="container-images">
+        <h1>Imagens</h1>
+        <div>
+          <img src="http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665715595705.foto-perfil.png"></img>
+
+          
+          <img src="http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665715595705.foto-perfil.png"></img>
+          <img src="http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665715595705.foto-perfil.png"></img>
+          <img src="http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665715595705.foto-perfil.png"></img>
+          <img src="http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665715595705.foto-perfil.png"></img>
+          <img src="http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665715595705.foto-perfil.png"></img>
+        </div>
+      </div>
+
       {loading ? (
         <div className="loading">
           LOADING
@@ -44,14 +59,6 @@ function App() {
           </div>
         </div>
       ) : null}
-      {/* <div className="loading">
-        LOADING
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div> */}
     </div>
   );
 }
