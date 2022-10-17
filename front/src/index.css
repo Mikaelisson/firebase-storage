@@ -81,23 +81,45 @@ form button{
   font-weight: 700;
 }
 
-.container-images div{
+.images{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.container-images div img {
+.images div a{
   width: 150px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: gray solid 2px;
+  border-radius: 5px;
+}
+
+.images div a img {
+  width: 100%;
   border-radius: 10px;
+  object-fit: cover;
   cursor: pointer;
 }
 
-.container-images div img:hover{
-  border-radius: 100%;
+.images div a button{
+  color: black;
+  font-size: 1rem;
+  text-align: center;
+  background-color: rgb(255, 255, 37);
+  padding: 10px 0;
+  margin-top: 5px;
+  border: none;
+  cursor: pointer;
 }
 
+.images div a button:hover{
+  background-color: rgb(209, 209, 32);
+}
 
 
 .loading{

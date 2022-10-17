@@ -15,9 +15,8 @@ const uploadImage = (req, res, next) => {
   if (!req.file) return next();
 
   const image = req.file;
-  console.log(image);
+
   const fileName = Date.now() + "." + image.originalname;
-  console.log(fileName);
 
   const file = bucket.file(`images/${fileName}`);
 
@@ -34,10 +33,16 @@ const uploadImage = (req, res, next) => {
   stream.on("finish", async () => {
     await file.makePublic();
 
+    req.file.firebaseFileName = fileName;
+
     req.file.firebaseUrl = `http://storage.googleapis.com/${BUCKET}/images/${fileName}`;
 
+    // console.log(`FIREBASE CONFIG URL ===> ${req.file.firebaseUrl}`);
+    console.log("Add image firebase storage success...");
     next();
   });
+
+  // console.log(`FIREBASE CONFIG IMAGE ===> ${image}`);
 
   stream.end(image.buffer);
 };
