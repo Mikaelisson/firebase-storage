@@ -13,6 +13,7 @@ router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
 router.get("/", controller.home);
+router.get("/api/images", db.findDocuments, controller.find);
 
 router.post(
   "/upload",

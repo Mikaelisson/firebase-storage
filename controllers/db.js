@@ -33,4 +33,17 @@ const addDocument = async (req, res, next) => {
   }
 };
 
-module.exports = { addDocument };
+const findDocuments = async (req, res, next) => {
+  const collection = db.collection("images");
+
+  try {
+    const result = await collection.find({}).toArray();
+    req.doc = result;
+    next();
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
+
+module.exports = { addDocument, findDocuments };

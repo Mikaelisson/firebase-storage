@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { FaTrash } from "react-icons/fa";
 
 function App() {
   const [filePath, setFilePath] = useState("");
   const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState("");
+
+  useEffect(() => {
+    fetch("/api/images")
+      .then((res) => res.json())
+      .then((res) => {
+        setImages(res);
+      });
+  }, []);
 
   return (
     <div className="app">
@@ -38,16 +48,29 @@ function App() {
       <div className="container-images">
         <h1>Imagens</h1>
         <div className="images">
-          <div>
-            <a
-              href=" http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665971285036.foto-perfil.png"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src=" http://storage.googleapis.com/image-processing-1b28b.appspot.com/images/1665971285036.foto-perfil.png" alt="Imagem de foto-perfil.png"></img>
-              <button>Ver mais</button>
-            </a>
-          </div>
+          {images
+            ? images.map((element, index) => {
+                return (
+                  <form key={index} action="" method="">
+                    <a href={element.url} target="_blank" rel="noreferrer">
+                      <img
+                        src={element.url}
+                        alt="Imagem de foto-perfil.png"
+                      ></img>
+                      <div className="buttons-image">
+                        <button onClick={(event) => event.preventDefault()}>
+                          Ver mais
+                        </button>
+                        <button type="submit">
+                          <FaTrash />
+                        </button>
+                      </div>
+                    </a>
+                  </form>
+                );
+              })
+            : null}
+          <div></div>
         </div>
       </div>
 

@@ -88,37 +88,62 @@ form button{
   gap: 20px;
 }
 
-.images div a{
+.images form a{
   width: 150px;
+  height: 200px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.3);
   border: gray solid 2px;
   border-radius: 5px;
 }
 
-.images div a img {
+.images form a:hover{
+  background-color: rgba(58, 58, 58, 0.3);
+}
+
+.images form a img {
   width: 100%;
   border-radius: 10px;
   object-fit: cover;
   cursor: pointer;
 }
 
-.images div a button{
+.buttons-image{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.buttons-image button{
   color: black;
   font-size: 1rem;
   text-align: center;
-  background-color: rgb(255, 255, 37);
+  background-color: rgb(235, 235, 38);
   padding: 10px 0;
   margin-top: 5px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  width: 75%;
 }
 
-.images div a button:hover{
+.buttons-image button:hover{
   background-color: rgb(209, 209, 32);
+}
+
+.buttons-image button[type="submit"]{
+  width: 25%;
+  background-color: red;
+}
+
+.buttons-image button[type="submit"]:hover{
+  width: 25%;
+  background-color: rgb(201, 0, 0);
 }
 
 
