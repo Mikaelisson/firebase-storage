@@ -88,7 +88,7 @@ form button{
   gap: 20px;
 }
 
-.images form a{
+.images div a{
   width: 150px;
   height: 200px;
   text-decoration: none;
@@ -101,11 +101,11 @@ form button{
   border-radius: 5px;
 }
 
-.images form a:hover{
+.images div a:hover{
   background-color: rgba(58, 58, 58, 0.3);
 }
 
-.images form a img {
+.images div a img {
   width: 100%;
   border-radius: 10px;
   object-fit: cover;
@@ -136,12 +136,12 @@ form button{
   background-color: rgb(209, 209, 32);
 }
 
-.buttons-image button[type="submit"]{
+.buttons-image button:nth-child(2){
   width: 25%;
   background-color: red;
 }
 
-.buttons-image button[type="submit"]:hover{
+.buttons-image button:nth-child(2){
   width: 25%;
   background-color: rgb(201, 0, 0);
 }
@@ -171,42 +171,53 @@ form button{
   align-items: center;
 }
 
-.loading div span:nth-child(1){
+.loading div span{
   width: 50px;
   height: 50px;
   border: white solid 5px;
   border-top: transparent solid 5px;
   border-radius: 100%;
   position: absolute;
-  animation: anim-loading 1s ease-in-out infinite;
-  animation-delay: .3s;
-}
-
-
-.loading div span:nth-child(2){
-  width: 70px;
-  height: 70px;
-  border: white solid 3px;
-  border-top: transparent solid 3px;
-  border-radius: 100%;
-  position: absolute;
-  animation: anim-loading 1s ease-in-out infinite;
+  animation: anim-loading 2s ease-in-out infinite;
   animation-delay: .5s;
 }
 
-.loading div span:nth-child(3){
-  width: 30px;
-  height: 30px;
-  border: white solid 3px;
-  border-top: transparent solid 3px;
-  border-radius: 100%;
-  position: absolute;
-  animation: anim-loading 1s ease-in-out infinite;
-}
 
 @keyframes anim-loading {
   0%{
     transform: rotate(0deg);
+    border: white solid 5px;
+    border-top: transparent solid 5px;
+  }
+  10%{
+    border: white solid 5px;
+    border-top: transparent solid 5px;
+    border-right: transparent solid 5px;
+  }
+  20%{
+    border: transparent solid 5px;    
+    border-left: white solid 5px;
+  }
+  40%{
+    border: transparent solid 5px;    
+    border-left: white solid 5px;
+  }
+  50%{
+    border: white solid 5px;
+    border-top: transparent solid 5px;
+    border-right: transparent solid 5px;
+  }
+  60%{
+    border: white solid 5px;
+    border-top: transparent solid 5px;
+    transform: rotate(390deg);
+  }
+  70%{
+    border: white solid 5px;
+  }
+  80%{
+    border: white solid 5px;
+    border-top: transparent solid 5px;
   }
   100%{
     transform: rotate(360deg);

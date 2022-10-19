@@ -13,14 +13,16 @@ router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
 router.get("/", controller.home);
-router.get("/api/images", db.findDocuments, controller.find);
+router.get("/api/images", db.findDocuments, controller.findImage);
 
 router.post(
   "/upload",
   multer(multerConfig).single("img-file"),
   uploadImage,
   db.addDocument,
-  controller.upload
+  controller.uploadImage
 );
+
+router.delete("/:id", db.deleteDocument, controller.deleteImage);
 
 module.exports = router;

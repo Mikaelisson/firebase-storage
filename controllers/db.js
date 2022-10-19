@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const url = "mongodb://localhost:27017";
 
@@ -25,7 +25,6 @@ const addDocument = async (req, res, next) => {
   try {
     await collection.insertOne(doc);
 
-    console.log("Add documents to MongoDB database success...");
     next();
   } catch (error) {
     console.log(error);
@@ -46,4 +45,17 @@ const findDocuments = async (req, res, next) => {
   }
 };
 
-module.exports = { addDocument, findDocuments };
+const deleteDocument = async (req, res, next) => {
+  const collection = db.collection("images");
+  const id = ObjectId(req.params.id);
+
+  try {
+    await collection.deleteOne({ _id: id });
+    next();
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+};
+
+module.exports = { addDocument, findDocuments, deleteDocument };

@@ -37,12 +37,9 @@ const uploadImage = (req, res, next) => {
 
     req.file.firebaseUrl = `http://storage.googleapis.com/${BUCKET}/images/${fileName}`;
 
-    // console.log(`FIREBASE CONFIG URL ===> ${req.file.firebaseUrl}`);
     console.log("Add image firebase storage success...");
     next();
   });
-
-  // console.log(`FIREBASE CONFIG IMAGE ===> ${image}`);
 
   stream.end(image.buffer);
 };

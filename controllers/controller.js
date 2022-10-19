@@ -6,27 +6,34 @@ const home = async (req, res) => {
   }
 };
 
-const upload = async (req, res) => {
+const uploadImage = async (req, res) => {
   try {
-    console.log("REDIRECT...");
     res.redirect("/");
   } catch (error) {
     res.send(error);
   }
 };
 
-const find = async (req, res) => {
+const findImage = async (req, res) => {
   try {
     const doc = req.doc;
-    console.log("CONTROLLER REQUEST ===>", doc);
     res.send(doc);
   } catch (error) {
-    res.send(error);
+    res.status(404).send(error);
+  }
+};
+
+const deleteImage = async (req, res) => {
+  try {
+    res.send("success");
+  } catch (error) {
+    res.status(404).send(error);
   }
 };
 
 module.exports = {
   home,
-  upload,
-  find,
+  uploadImage,
+  findImage,
+  deleteImage,
 };
