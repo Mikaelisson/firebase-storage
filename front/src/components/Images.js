@@ -43,7 +43,6 @@ const Images = (props) => {
               );
             })
           : null}
-        <div></div>
       </div>
     </div>
   );

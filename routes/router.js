@@ -5,7 +5,7 @@ const db = require("../controllers/db");
 
 const multer = require("multer");
 const multerConfig = require("../controllers/multerConfig.js");
-const uploadImage = require("../firebase/firebaseConfig.js");
+const { uploadImage, deleteImage } = require("../firebase/firebaseConfig.js");
 
 const controller = require("../controllers/controller");
 
@@ -23,6 +23,6 @@ router.post(
   controller.uploadImage
 );
 
-router.delete("/:id", db.deleteDocument, controller.deleteImage);
+router.delete("/:id", db.deleteDocument, deleteImage, controller.deleteImage);
 
 module.exports = router;

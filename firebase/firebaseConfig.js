@@ -44,4 +44,15 @@ const uploadImage = (req, res, next) => {
   stream.end(image.buffer);
 };
 
-module.exports = uploadImage;
+const deleteImage = async (req, res, next) => {
+  const file = bucket.file(`images/${req.file}`);
+
+  try {
+    await file.delete();
+    next();
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+
+module.exports = { uploadImage, deleteImage };

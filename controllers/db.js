@@ -50,6 +50,8 @@ const deleteDocument = async (req, res, next) => {
   const id = ObjectId(req.params.id);
 
   try {
+    const find = await collection.findOne({ _id: id });
+    req.file = find.name;
     await collection.deleteOne({ _id: id });
     next();
   } catch (error) {
