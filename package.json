@@ -14,10 +14,11 @@
   "main": "app.js",
   "license": "MIT",
   "scripts": {
+    "start": "node app.js",
     "start_client": "npm run start --prefix front",
     "start_node": "nodemon app.js",
     "dev": "concurrently \"npm run start_node\" \"npm run start_client\"",
-    "postinstall": "npm install --prefix front"
+    "postinstall": "yarn --prefix front"
   },
   "keywords": [],
   "author": "Mikaelisson <mikaelissongesuino@gmail.com>",
