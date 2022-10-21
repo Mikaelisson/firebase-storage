@@ -3,7 +3,7 @@ var admin = require("firebase-admin");
 const BUCKET = "image-processing-1b28b.appspot.com";
 
 if (process.env.NODE_ENV != "development") {
-  var serviceAccount = require("../firebase-key.json");
+  var serviceAccount = require("/etc/secrets/firebase-key.json");
 } else {
   var serviceAccount = require("./firebase-key.json");
 }
