@@ -15,6 +15,8 @@ const conectToDB = async () => {
 conectToDB();
 
 const addDocument = async (req, res, next) => {
+  if (!req.file) return next();
+
   const collection = db.collection("images");
 
   const doc = {

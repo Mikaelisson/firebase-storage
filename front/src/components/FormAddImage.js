@@ -12,6 +12,7 @@ const FormAddImage = (props) => {
         <label htmlFor="file">Clique aqui</label>
         <input
           type="file"
+          accept="image/*"
           name="img-file"
           id="file"
           onChange={(event) => {

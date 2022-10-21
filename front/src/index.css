@@ -107,8 +107,9 @@ form button{
 
 .images div a img {
   width: 100%;
-  border-radius: 10px;
+  height: 126px;
   object-fit: cover;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -136,12 +137,12 @@ form button{
   background-color: rgb(209, 209, 32);
 }
 
-.buttons-image button:nth-child(2){
+#btnDelete{
   width: 25%;
   background-color: red;
 }
 
-.buttons-image button:nth-child(2){
+#btnDelete:hover{
   width: 25%;
   background-color: rgb(201, 0, 0);
 }

@@ -1,6 +1,4 @@
 const multer = require("multer");
-const path = require("path");
-const crypto = require("crypto");
 
 module.exports = multerConfig = {
   storage: multer.memoryStorage(),
@@ -19,7 +17,7 @@ module.exports = multerConfig = {
     if (allowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error("Invalid file type."));
+      cb();
     }
   },
 };

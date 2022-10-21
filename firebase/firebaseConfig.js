@@ -37,7 +37,6 @@ const uploadImage = (req, res, next) => {
 
     req.file.firebaseUrl = `http://storage.googleapis.com/${BUCKET}/images/${fileName}`;
 
-    console.log("Add image firebase storage success...");
     next();
   });
 
@@ -51,7 +50,8 @@ const deleteImage = async (req, res, next) => {
     await file.delete();
     next();
   } catch (error) {
-    res.status(404).send(error);
+    console.log(error);
+    next();
   }
 };
 

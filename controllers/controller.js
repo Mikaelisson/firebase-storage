@@ -1,16 +1,17 @@
 const home = async (req, res) => {
   try {
-    req.render("index");
+    res.redirect("/api/images");
   } catch (error) {
-    res.send(error);
+    res.status(404).send(error);
   }
 };
 
 const uploadImage = async (req, res) => {
+  if (!req.file) throw new Error("Arquivo inválido.");
   try {
     res.redirect("/");
   } catch (error) {
-    res.send(error);
+    res.status(404).send(error);
   }
 };
 

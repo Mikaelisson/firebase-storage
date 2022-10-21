@@ -29,6 +29,7 @@ const Images = (props) => {
                     <div className="buttons-image">
                       <button type="button">Ver mais</button>
                       <button
+                        id="btnDelete"
                         onClick={(event) => {
                           event.preventDefault();
                           props.onSetLoading();

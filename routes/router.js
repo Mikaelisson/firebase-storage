@@ -5,7 +5,7 @@ const db = require("../controllers/db");
 
 const multer = require("multer");
 const multerConfig = require("../controllers/multerConfig.js");
-const { uploadImage, deleteImage } = require("../firebase/firebaseConfig.js");
+const firebaseStorage = require("../firebase/firebaseConfig.js");
 
 const controller = require("../controllers/controller");
 
@@ -18,11 +18,16 @@ router.get("/api/images", db.findDocuments, controller.findImage);
 router.post(
   "/upload",
   multer(multerConfig).single("img-file"),
-  uploadImage,
+  firebaseStorage.uploadImage,
   db.addDocument,
   controller.uploadImage
 );
 
-router.delete("/:id", db.deleteDocument, deleteImage, controller.deleteImage);
+router.delete(
+  "/:id",
+  db.deleteDocument,
+  firebaseStorage.deleteImage,
+  controller.deleteImage
+);
 
 module.exports = router;
