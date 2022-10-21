@@ -2,7 +2,11 @@ var admin = require("firebase-admin");
 
 const BUCKET = "image-processing-1b28b.appspot.com";
 
-var serviceAccount = require("./firebase-key.json");
+if (process.env.NODE_ENV != "development") {
+  var serviceAccount = require("../firebase-key.json");
+} else {
+  var serviceAccount = require("./firebase-key.json");
+}
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
