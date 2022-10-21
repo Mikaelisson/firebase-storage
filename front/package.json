@@ -1,6 +1,5 @@
 {
-  "homepage": ".",
-  "proxy": "http://localhost:3001",
+  "homepage": "https://github.com/Mikaelisson/firebase-storage",
   "name": "front",
   "version": "0.1.0",
   "private": true,
