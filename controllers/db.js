@@ -1,6 +1,12 @@
 const { MongoClient, ObjectId } = require("mongodb");
 
-const url = "mongodb://localhost:27017";
+var url;
+
+if (process.env.NODE_ENV != "development") {
+  url = process.env.MONGO_SECRET_URL;
+} else {
+  url = "mongodb://localhost:27017";
+}
 
 const client = new MongoClient(url);
 
