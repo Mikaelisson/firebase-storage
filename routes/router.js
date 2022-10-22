@@ -12,7 +12,7 @@ const firebaseStorage = require("../firebase/firebaseConfig.js");
 const controller = require("../controllers/controller");
 
 const corsOptions = {
-  origin: "http://firebase-storage-test.onrender.com",
+  origin: "https://firebase-storage-test.onrender.com",
   optionsSuccessStatus: 200,
 };
 
