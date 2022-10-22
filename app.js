@@ -13,9 +13,11 @@ const corsOptions = {
 };
 
 if (process.env.NODE_ENV != "development") {
+  app.options("*", cors());
+
   app.use(express.static(path.join(__dirname, "front/build")));
 
-  app.get("*", cors(), (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "front/build/index.html"), (error) => {
       if (error) return res.status(500).send(error);
     });
