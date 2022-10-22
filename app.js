@@ -1,15 +1,21 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const path = require("path");
 const router = require("./routes/router");
 
 app.use(express.static(path.join(__dirname, "front/build")));
 
+const corsOptions = {
+  origin: "https://firebase-storage-test.onrender.com",
+  optionsSuccessStatus: 200,
+};
+
 if (process.env.NODE_ENV != "development") {
   app.use(express.static(path.join(__dirname, "front/build")));
 
-  app.get("*", (req, res) => {
+  app.get("*", cors(corsOptions), (req, res) => {
     res.sendFile(path.join(__dirname, "front/build/index.html"), (error) => {
       if (error) return res.status(500).send(error);
     });
