@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const cors = require("cors");
+
 const db = require("../controllers/db");
 
 const multer = require("multer");
@@ -8,6 +10,13 @@ const multerConfig = require("../controllers/multerConfig.js");
 const firebaseStorage = require("../firebase/firebaseConfig.js");
 
 const controller = require("../controllers/controller");
+
+const corsOptions = {
+  origin: "https://firebase-storage-test.onrender.com",
+  optionsSuccessStatus: 200,
+};
+
+router.options("*", cors(corsOptions));
 
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
