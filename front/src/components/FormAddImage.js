@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
 const FormAddImage = (props) => {
+  const [maxSize, setMaxSize] = useState(false);
+
+  const handleChange = (event) => {
+    const path = event.target.files[0].name;
+    const fileSize = event.target.files[0].size;
+    const maxSize = 2 * 1024 * 1024;
+
+    if (fileSize > maxSize) {
+      setMaxSize(true);
+    } else {
+      setMaxSize(false);
+      props.onFilePath(path);
+    }
+  };
+
+  const formSubmit = (event) => {
+    event.preventDefault();
+
+    const filepath = props.filePath;
+
+    if (filepath !== "") {
+      props.onSetLoading();
+      document.getElementById("formAddImage").submit();
+    }
+  };
+
   return (
     <form
       id="formAddImage"
@@ -16,25 +42,31 @@ const FormAddImage = (props) => {
           name="img-file"
           id="file"
           onChange={(event) => {
-            let path = event.target.files[0].name;
-            props.onFilePath(path);
+            handleChange(event);
           }}
         />
       </div>
-      <p>{props.filePath}</p>
-      <button
-        type="submit"
-        onClick={(event) => {
-          event.preventDefault();
-          const filepath = props.filePath;
-          if (filepath !== "") {
-            props.onSetLoading();
-            document.getElementById("formAddImage").submit();
-          }
-        }}
-      >
-        Enviar
-      </button>
+      <div>
+        {!maxSize ? (
+          <p>{props.filePath}</p>
+        ) : (
+          <p>Imagem fora do limite máximo de 2 MB</p>
+        )}
+      </div>
+      {!maxSize ? (
+        <button
+          type="submit"
+          onClick={(event) => {
+            formSubmit(event);
+          }}
+        >
+          Enviar
+        </button>
+      ) : (
+        <button type="submit" disabled>
+          Enviar
+        </button>
+      )}
     </form>
   );
 };
