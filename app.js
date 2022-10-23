@@ -4,6 +4,8 @@ const app = express();
 const path = require("path");
 const router = require("./routes/router");
 
+app.use("/", router);
+
 app.use(express.static(path.join(__dirname, "front/build")));
 
 if (process.env.NODE_ENV != "development") {
@@ -15,8 +17,6 @@ if (process.env.NODE_ENV != "development") {
     });
   });
 }
-
-app.use("/", router);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
