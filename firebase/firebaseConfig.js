@@ -39,7 +39,7 @@ const uploadImage = (req, res, next) => {
 
     req.file.firebaseFileName = fileName;
 
-    req.file.firebaseUrl = `http://storage.googleapis.com/${BUCKET}/images/${fileName}`;
+    req.file.firebaseUrl = `https://storage.googleapis.com/${BUCKET}/images/${fileName}`;
 
     next();
   });
