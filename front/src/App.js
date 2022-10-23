@@ -4,9 +4,9 @@ import FormAddImage from "./components/FormAddImage";
 import Images from "./components/Images";
 
 function App() {
-  const [filePath, setFilePath] = useState("");
+  const [filePath, setFilePath] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState(null);
 
   useEffect(() => {
     searchImages();

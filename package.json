@@ -15,9 +15,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
-    "start_client": "npm run start --prefix front",
-    "start_node": "nodemon app.js",
-    "dev": "concurrently \"npm run start_node\" \"npm run start_client\""
+    "dev": "concurrently \"nodemon app.js\" \"cd front && yarn start\"",
+    "postinstall": "cd front && yarn && yarn build"
   },
   "keywords": [],
   "author": "Mikaelisson <mikaelissongesuino@gmail.com>",
