@@ -1,5 +1,5 @@
 {
-  "proxy": "https://firebase-storage-test.onrender.com",
+  "proxy": "http://localhost:3001",
   "name": "front",
   "version": "0.1.0",
   "private": true,

@@ -4,9 +4,9 @@ const app = express();
 const path = require("path");
 const router = require("./routes/router");
 
-app.use("/", router);
-
 app.use(express.static(path.join(__dirname, "front/build")));
+
+app.use("/", router);
 
 if (process.env.NODE_ENV != "development") {
   app.use(express.static(path.join(__dirname, "front/build")));
