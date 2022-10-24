@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import Dropzone from "react-dropzone";
 
 const FormAddImage = (props) => {
   const [maxSize, setMaxSize] = useState(false);
 
-  const handleChange = (event) => {
-    const path = event.target.files[0].name;
-    const fileSize = event.target.files[0].size;
+  const handleChange = (file) => {
+    const path = file[0].name;
+    const fileSize = file[0].size;
     const maxSize = 2 * 1024 * 1024;
 
     if (fileSize > maxSize) {
@@ -34,18 +35,30 @@ const FormAddImage = (props) => {
       method="POST"
       encType="multipart/form-data"
     >
-      <div className="input-file">
-        <label htmlFor="file">Clique aqui</label>
-        <input
-          type="file"
-          accept="image/*"
-          name="img-file"
-          id="file"
-          onChange={(event) => {
-            handleChange(event);
-          }}
-        />
-      </div>
+      <Dropzone
+        onDrop={(acceptedFile) => {
+          console.log(acceptedFile);
+          handleChange(acceptedFile);
+        }}
+        accept={{
+          "image/*": [".jpeg", ".jpg", ".pjpeg", ".png", ".gif"],
+        }}
+      >
+        {({ getRootProps, getInputProps, isDragActive, isDragReject }) => {
+          return (
+            <section className="input-file">
+              <div {...getRootProps()}>
+                <input {...getInputProps()} accept="image/*" name="img-file" />
+                {isDragActive && !isDragReject && (
+                  <p>Solte os arquivos aqui...</p>
+                )}
+                {isDragReject && <p>Formato de arquivo não suportado.</p>}
+                {!isDragActive && !isDragReject && <p>Clique aqui</p>}
+              </div>
+            </section>
+          );
+        }}
+      </Dropzone>
       <div>
         {!maxSize ? (
           <p>{props.filePath}</p>
