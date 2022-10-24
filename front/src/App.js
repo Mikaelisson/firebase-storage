@@ -39,6 +39,7 @@ function App() {
         filePath={filePath}
         onFilePath={onFilePath}
         onSetLoading={onSetLoading}
+        searchImages={searchImages}
       />
 
       <Images
@@ -49,7 +50,7 @@ function App() {
 
       {loading ? (
         <div className="loading">
-          LOADING
+          CARREGANDO
           <div>
             <span></span>
           </div>

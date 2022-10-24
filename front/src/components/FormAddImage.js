@@ -7,9 +7,9 @@ const FormAddImage = (props) => {
   const handleChange = (file) => {
     const path = file[0].name;
     const fileSize = file[0].size;
-    const maxSize = 2 * 1024 * 1024;
+    const size = 2 * 1024 * 1024;
 
-    if (fileSize > maxSize) {
+    if (fileSize > size) {
       setMaxSize(true);
     } else {
       setMaxSize(false);
@@ -17,43 +17,58 @@ const FormAddImage = (props) => {
     }
   };
 
-  const formSubmit = (event) => {
-    event.preventDefault();
-
+  const uploadImage = (file) => {
     const filepath = props.filePath;
 
     if (filepath !== "") {
-      props.onSetLoading();
-      document.getElementById("formAddImage").submit();
+      if (file.length === 1) {
+        const form = new FormData();
+        form.append("img-file", file[0]);
+
+        fetch("/upload", { method: "POST", body: form })
+          .then((res) => {
+            if (res.status === 200) {
+              props.onSetLoading(true);
+              props.searchImages();
+              props.onFilePath(null);
+            } else {
+              props.onSetLoading(true);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        props.onFilePath("Faça upload de 1 arquivo por vez.");
+        props.onSetLoading(true);
+      }
     }
   };
 
   return (
-    <form
-      id="formAddImage"
-      action="/upload"
-      method="POST"
-      encType="multipart/form-data"
-    >
+    <div className="input-form">
       <Dropzone
         onDrop={(acceptedFile) => {
-          console.log(acceptedFile);
           handleChange(acceptedFile);
+          props.onSetLoading();
+          uploadImage(acceptedFile);
         }}
         accept={{
-          "image/*": [".jpeg", ".jpg", ".pjpeg", ".png", ".gif"],
+          "image/*": [],
         }}
       >
         {({ getRootProps, getInputProps, isDragActive, isDragReject }) => {
           return (
             <section className="input-file">
               <div {...getRootProps()}>
-                <input {...getInputProps()} accept="image/*" name="img-file" />
+                <input {...getInputProps()} />
                 {isDragActive && !isDragReject && (
-                  <p>Solte os arquivos aqui...</p>
+                  <p>Solte o arquivo aqui...</p>
                 )}
                 {isDragReject && <p>Formato de arquivo não suportado.</p>}
-                {!isDragActive && !isDragReject && <p>Clique aqui</p>}
+                {!isDragActive && !isDragReject && (
+                  <p>Clique aqui ou arraste o arquivo</p>
+                )}
               </div>
             </section>
           );
@@ -66,21 +81,7 @@ const FormAddImage = (props) => {
           <p>Imagem fora do limite máximo de 2 MB</p>
         )}
       </div>
-      {!maxSize ? (
-        <button
-          type="submit"
-          onClick={(event) => {
-            formSubmit(event);
-          }}
-        >
-          Enviar
-        </button>
-      ) : (
-        <button type="submit" disabled>
-          Enviar
-        </button>
-      )}
-    </form>
+    </div>
   );
 };
 
