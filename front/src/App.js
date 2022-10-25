@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FormAddImage from "./components/FormAddImage";
 import Images from "./components/Images";
+import Loading from "./components/Loading";
 
 function App() {
   const [filePath, setFilePath] = useState(null);
@@ -11,8 +12,8 @@ function App() {
     searchImages();
   }, []);
 
-  const searchImages = async () => {
-    await fetch("/api/images")
+  const searchImages = () => {
+    fetch("/api/images")
       .then((res) => res.json())
       .then((res) => {
         setImages(res);
@@ -35,6 +36,7 @@ function App() {
   return (
     <div className="app">
       <h1>Upload de imagem</h1>
+
       <FormAddImage
         filePath={filePath}
         onFilePath={onFilePath}
@@ -48,14 +50,7 @@ function App() {
         searchImages={searchImages}
       />
 
-      {loading ? (
-        <div className="loading">
-          CARREGANDO
-          <div>
-            <span></span>
-          </div>
-        </div>
-      ) : null}
+      <Loading loading={loading} />
     </div>
   );
 }

@@ -7,7 +7,6 @@ const home = async (req, res) => {
 };
 
 const uploadImage = async (req, res) => {
-  console.log(req.file);
   if (!req.file) throw new Error("Arquivo inválido.");
   try {
     res.redirect("/");
